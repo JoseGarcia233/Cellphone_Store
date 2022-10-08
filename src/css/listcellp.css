@@ -1,0 +1,29 @@
+.card img{
+    width: 60%;
+    height: 59%;
+    position: relative;
+    left:60px ;
+    top: 15px;
+    border: 10px;
+    border-radius: 6%;
+}
+
+.card {
+    width: 20%;
+    height: 360px;
+    position: relative;
+    top: 50px;
+    border: 5%;
+    border-color:navajowhite;
+    background-color:#628E90 ;
+    border-radius: 8%;
+}
+
+.ncard .card{
+    width: 1500%;
+    height: 50%;
+}
+
+.contanerC{
+    height: 1900px;
+}
