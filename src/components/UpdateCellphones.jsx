@@ -1,12 +1,11 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import'../css/addChellp.css'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 const api ='https://localhost:44338/api/cellphones/';
 
-
-export default function AddCellphone() {
-  let nav = useNavigate();
+export default function UpdateCellphones() {
+    let nav = useNavigate();
   const [data, setData] = useState({
     brandNam:"",
     model:"",
@@ -19,7 +18,7 @@ export default function AddCellphone() {
 
   function submit(e){
     e.preventDefault();
-    axios.post(api,{
+    axios.put(api,{
       brandNam:data.brandNam,
       model:data.model,
       storage:data.storage,
@@ -40,10 +39,17 @@ export default function AddCellphone() {
     console.log(ndata)
   }
 
+  // useEffect(() => {
+  //   setData(localStorage.getItem('data.brandNam'));
+  //   setData(localStorage.getItem('data.model'));
+  //   setData(localStorage.getItem('data.storage'));
+  //   setData(localStorage.getItem('data.price'));
+  //   setData(localStorage.getItem('data.imageUrl'));
+  // },[]) 
 
   return (
     <div className='container-form'>
-    <h1>Add Cell Phones</h1>
+    <h1>Update Cell Phones</h1>
       <form onSubmit={(e)=> submit(e)}>
         <input onChange={(e)=>handle(e)} id='brandNam' value={data.brandNam} placeholder='Write the Brand here' type="text" required />
           <br/>

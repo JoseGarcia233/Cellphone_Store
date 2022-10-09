@@ -1,25 +1,55 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from 'react';
 import '../css/listcellp.css';
+import CellphoneGapi from '../hooks/CellphoneGapi';
+import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 export default function ListCellphone() {
-    const style1 = {width:'18rem' }
-    const img4 = 'https://fdn2.gsmarena.com/vv/pics/motorola/motorola-edge30-neo-1.jpg';
+  const api ='https://localhost:44338/api/cellphones/';
+    const [cellphones] = CellphoneGapi();
+    console.log(cellphones);
+    
+    const handleDelt =  async() => {
+       const res = await axios.delete(`${api}/${cellphones.id}`)
+      console.log(res);
+     };
+
+     const setID = (id) => {
+        console.log(id);
+        localStorage.setItem('ID', id);
+     };
+
   return (
     <div className="contanerC">
-    <div className="card" >
-
-        <img className="card-img-top" src="https://fdn2.gsmarena.com/vv/pics/motorola/motorola-edge30-neo-1.jpg" alt="Card image cap" /> 
-   
-  <div className="card-body">
-    <h6 className="card-title"> <b>Brand:</b> motorola </h6>
-    <h6 className="card-text"><b>Model:</b> G4</h6>
-    <h6 className="card-text"><b>Storage:</b> 32gb</h6>
-    <h6 className="card-text"><b>Price:</b> 10000</h6>
-    <a href="#/" class="btn btn-primary">Go somewhere</a>
-  </div>
+    {
+        cellphones.map(({
+          id,
+          brandNam,
+          model,
+          storage,
+          price,
+          imgUrl
+            }) => {
+                return (
+                    <div className="card"key={id} >
+                        <img className="card-img-top" src={imgUrl} alt="Card image cap" /> 
+                        
+                          <div className="card-body"  >
+                            <h6 className="card-title"> <b>Brand:</b> {brandNam} </h6>
+                              <h6 className="card-text"><b>Model:</b> {model}</h6>
+                            <h6 className="card-text"><b>Storage:</b> {storage}</h6>
+                          <h6 className="card-text"><b>Price:</b> {price}</h6>
+                          <Link  to="/Update" type="button" class=" btn btn-info me-2 " onClick={()=> setID(id)}>Edit</Link>
+                          <Link type="button" class="btn btn-danger mr-2" onClick={handleDelt}>Delete</Link>
+                    </div>
+                  </div>
+                )  
+            })
+        }  
+    
  
 </div>
-  </div>
+ 
   )
 }
