@@ -17,6 +17,7 @@
     border-color:navajowhite;
     background-color:#628E90 ;
     border-radius: 8%;
+    
 }
 
 .ncard .card{
@@ -26,4 +27,6 @@
 
 .contanerC{
     height: 1900px;
+    grid-template-columns: repeat(4,78px);
+    grid-template-rows: 125px repeat(6,78px);
 }

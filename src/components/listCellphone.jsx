@@ -6,14 +6,18 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 
 export default function ListCellphone() {
-  const api ='https://localhost:44338/api/cellphones/';
+  
     const [cellphones] = CellphoneGapi();
-    console.log(cellphones);
+   
     
-    const handleDelt =  async() => {
-       const res = await axios.delete(`${api}/${cellphones.id}`)
-      console.log(res);
-     };
+    console.log(cellphones);
+
+    
+   function DeleteC(id) {
+     axios.delete(`https://localhost:44338/api/cellphones/${id}`)
+     
+   }
+
 
      const setID = (id) => {
         console.log(id);
@@ -40,8 +44,8 @@ export default function ListCellphone() {
                               <h6 className="card-text"><b>Model:</b> {model}</h6>
                             <h6 className="card-text"><b>Storage:</b> {storage}</h6>
                           <h6 className="card-text"><b>Price:</b> {price}</h6>
-                          <Link  to="/Update" type="button" class=" btn btn-info me-2 " onClick={()=> setID(id)}>Edit</Link>
-                          <Link type="button" class="btn btn-danger mr-2" onClick={handleDelt}>Delete</Link>
+                          <Link  to={'/Update'} type="button" class=" btn btn-info me-2 " onClick={()=> setID(id)}>Edit</Link>
+                          <Link type="button" className="btn btn-danger mr-2" onClick={() =>DeleteC(id)}>Delete</Link>
                     </div>
                   </div>
                 )  

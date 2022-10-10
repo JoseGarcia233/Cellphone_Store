@@ -7,55 +7,53 @@ const api ='https://localhost:44338/api/cellphones/';
 
 export default function AddCellphone() {
   let nav = useNavigate();
-  const [data, setData] = useState({
-    brandNam:"",
-    model:"",
-    storage:"",
-    price :"",
-    imgUrl :"",
+  const [brandNam, setBrandNam] = useState('');
+  const [model, setModel] = useState('');
+  const [storage, setStorage] = useState('');
+  const[price, setPrice] = useState('');
+  const [imgUrl, setImgUrl] = useState('');
 
-    
-  });
-
-  function submit(e){
+  const handlesumit = async (e) => {
     e.preventDefault();
-    axios.post(api,{
-      brandNam:data.brandNam,
-      model:data.model,
-      storage:data.storage,
-      price:data.price,
-      imgUrl:data.imgUrl
-    }) 
-    .then(res =>{
-      console.log(res.data);
-      nav('/Listcellp');
-    })
-  }
-
-  function handle(e){
     
-    const ndata = {...data}
-    ndata[e.target.id] = e.target.value
-    setData(ndata)
-    console.log(ndata)
-  }
-
-
+    try{
+      const response = await axios.post(api,
+        {
+          brandNam: brandNam,
+          model: model,
+          storage: storage,
+          price: price,
+          imgUrl: imgUrl,
+        });
+        nav('/Listcellp');
+        console.log(response.data);
+    }catch(err){
+      console.log(err.response);
+    }
+  };
+  const setData = (brandNam, storage, model,price,imgUrl) => {
+    localStorage.setItem('BrandNam', brandNam)
+    localStorage.setItem('Model', model)
+    localStorage.setItem('Storage', storage)
+    localStorage.setItem('Price', price)
+    localStorage.setItem('ImgUrl', imgUrl)
+    
+}
   return (
     <div className='container-form'>
     <h1>Add Cell Phones</h1>
-      <form onSubmit={(e)=> submit(e)}>
-        <input onChange={(e)=>handle(e)} id='brandNam' value={data.brandNam} placeholder='Write the Brand here' type="text" required />
+      <form onSubmit={handlesumit}>
+        <input onChange={(e)=>setBrandNam(e.target.value)} id='brandNam' value={brandNam} placeholder='Write the Brand here' type="text" required />
           <br/>
-        <input onChange={(e)=>handle(e)} id='model'value={data.model} placeholder='Write the Model here'type="text" required />
+        <input onChange={(e)=>setModel(e.target.value)} id='model'value={model} placeholder='Write the Model here'type="text" required />
           <br/>
-        <input onChange={(e)=>handle(e)}  id='storage' value={data.storage} placeholder='Whrite the Storage here' type="text" required />
+        <input onChange={(e)=>setStorage(e.target.value)}  id='storage' value={storage} placeholder='Whrite the Storage here' type="text" required />
           <br/>
-          <input onChange={(e)=>handle(e)}  id='price' value={data.price} placeholder='Write the Price here without symbols' type="text" required />
+          <input onChange={(e)=>setPrice(e.target.value)}  id='price' value={price} placeholder='Write the Price here without symbols' type="text" required />
           <br/>
-          <input onChange={(e)=>handle(e)}  id='imgUrl' value={data.imgUrl} placeholder='Put the Url image here' type="text" required />
+          <input onChange={(e)=>setImgUrl(e.target.value)}  id='imgUrl' value={imgUrl} placeholder='Put the Url image here' type="text" required />
           <br/>
-        <button type="submit" class="btn btn-outline-secondary">Save</button>
+        <button type="submit"  onClick={() => setData(brandNam,model, storage,price,imgUrl)} class="btn btn-outline-secondary">Save</button>
       </form>
   </div>
   )
