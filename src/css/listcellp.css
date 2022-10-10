@@ -25,6 +25,7 @@
 .ncard .card{
     width: 1500%;
     height: 50%;
+    padding: 0;
 }
 
 .contanerC{
