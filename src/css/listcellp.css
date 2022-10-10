@@ -11,13 +11,15 @@
 .card {
     width: 20%;
     height: 360px;
-    position: relative;
-    top: 50px;
+    transition: transform .2s;
     border: 5%;
     border-color:navajowhite;
     background-color:#628E90 ;
     border-radius: 8%;
-    
+    float:left;
+    margin: 45px;
+    position: relative;
+    left: 150px;
 }
 
 .ncard .card{
@@ -27,5 +29,7 @@
 
 .contanerC{
     height: 1900px;
+    margin-right: 200px;
+   
 ;
 }
