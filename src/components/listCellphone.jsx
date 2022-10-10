@@ -15,7 +15,7 @@ export default function ListCellphone() {
     
    function DeleteC(id) {
      axios.delete(`https://localhost:44338/api/cellphones/${id}`)
-     
+     window.location.reload()
    }
 
 
