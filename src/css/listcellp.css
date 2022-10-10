@@ -27,6 +27,5 @@
 
 .contanerC{
     height: 1900px;
-    grid-template-columns: repeat(4,78px);
-    grid-template-rows: 125px repeat(6,78px);
+;
 }
