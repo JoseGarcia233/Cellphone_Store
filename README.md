@@ -1,4 +1,4 @@
-si el proyecto no reconoce el comnado yarn start o npm corra el sigiente comando: ##npm install react-scripts --save
+si el proyecto no reconoce el comnado yarn start o npm corra el sigiente comando: <h1>npm install react-scripts --save</h1>
 
 In the project directory, you can run:
 
