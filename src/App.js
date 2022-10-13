@@ -14,7 +14,7 @@ function App() {
       <Router>
         <NavB/>
         <Routes>
-            <Route path='/Update' element={<UpdateCellphones/>} />
+            <Route path='/Update:id' element={<UpdateCellphones/>} />
             <Route path='/' element={<Home/>}/>
             <Route path='/Listcellp' element={<ListCellphone/>} />
             <Route path='/AddPhone' element={<AddCellphone/>} />

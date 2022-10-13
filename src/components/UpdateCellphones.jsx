@@ -12,18 +12,21 @@ export default function UpdateCellphones() {
     const[price, setPrice] = useState('');
     const [imgUrl, setImgUrl] = useState('');
     const [ID,setID] = useState('null');
-  
+
+    let id = localStorage.getItem('ID')
     const handlesumit = async (e) => {
     e.preventDefault();
-   
+    
     try{
-      const response = await axios.put(`https://localhost:44338/api/cellphones/${ID}`,
-        {  brandNam: brandNam,
-          model: model,
-          storage: storage,
-          price: price,
-          imgUrl: imgUrl,
-        });
+      const response = await axios.put(`https://localhost:44338/api/cellphones/`+id,
+      {
+        "id": id,
+        "brandNam": brandNam,
+        "model": model,
+        "storage": storage,
+        "price": price,
+        "imgUrl": imgUrl,
+      });
         nav('/Listcellp');
         console.log(response.data);
     }catch(err){
@@ -44,10 +47,10 @@ export default function UpdateCellphones() {
   return (
     <div className='container-form'>
     <h1>update Cell Phones</h1>
-      <form >
+      <form onSubmit={handlesumit}>
         <input onChange={(e)=>setBrandNam(e.target.value)} id='brandNam' value={brandNam} placeholder='Write the Brand here' type="text" required />
           <br/>
-        <input onChange={(e)=>setModel(e.target.value)} id='model'value={model} placeholder='Write the Model here'type="text" required />
+        <input onChange={(e)=>setModel(e.target.value)} id='model' value={model} placeholder='Write the Model here'type="text" required />
           <br/>
         <input onChange={(e)=>setStorage(e.target.value)}  id='storage' value={storage} placeholder='Whrite the Storage here' type="text" required />
           <br/>
@@ -55,7 +58,7 @@ export default function UpdateCellphones() {
           <br/>
           <input onChange={(e)=>setImgUrl(e.target.value)}  id='imgUrl' value={imgUrl} placeholder='Put the Url image here' type="text" required />
           <br/>
-        <button type="submit" onClick={handlesumit}  class="btn btn-outline-secondary">Save</button>
+        <button type="submit" class="btn btn-outline-secondary">Save</button>
       </form>
   </div>
   )
